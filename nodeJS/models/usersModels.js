@@ -1,4 +1,4 @@
-const pool = require('../server.js');
+const pool = require('../db.js');
 
 async function getUsers() {
     try {

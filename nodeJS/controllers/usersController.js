@@ -6,15 +6,22 @@ async function create(name, price, description){
     }catch(err){
         throw err;
     }
-    
 }
 
 async function getAll(){
-
+    try{
+        return model.getUsers();
+    }catch(err){
+        throw err;
+    }
 }
 
-async function getById(){
-
+async function getById(id){
+    try{
+        return model.getUser(id);
+    }catch(err){
+        throw err;
+    }
 }
 
 module.exports = {create, getAll, getById}

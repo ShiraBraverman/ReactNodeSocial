@@ -1,5 +1,5 @@
 const express = require('express');
-const mysql = require('mysql2'); // שימוש ב-require כאן
+const mysql = require('mysql2'); 
 require('dotenv').config();
 
 const app = express();
@@ -12,9 +12,4 @@ const pool = mysql.createPool({
   database: process.env.DB_DATABASE,
 }).promise();
 
-
-
-const PORT = process.env.PORT || 7000;
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+module.exports = pool
