@@ -12,18 +12,7 @@ const pool = mysql.createPool({
   database: process.env.DB_DATABASE,
 }).promise();
 
-// נתיבים
-app.get('/users', async (req, res) => {
-    try {
-      const connection = await pool.getConnection();
-      const [rows, fields] = await connection.query('SELECT * FROM users');
-      res.json(rows);
-      connection.release();
-    } catch (error) {
-      console.error('Error getting users:', error);
-      res.status(500).json({ error: 'Error getting users' });
-    }
-});
+
 
 const PORT = process.env.PORT || 7000;
 app.listen(PORT, () => {

@@ -62,4 +62,4 @@ async function getUser(id) {
 //   }
 
 // module.exports = {updateBranch, getBranch, getBranches, deleteBranch, createBranch}
-module.exports = { getBranch, getBranches }
+module.exports = { getUser,getUsers }
