@@ -17,7 +17,7 @@ router.get("/:id", async (req, res) => {
 router.post("/", async (req, res) => {
     try {
         const response = await controller.create(req.body.username, req.body.email, req.body.phone)
-        res.send(await controller.getById(response.id));
+        res.send(await controller.getById(response.insertId));
     } catch (err) {
         throw err;
     }
