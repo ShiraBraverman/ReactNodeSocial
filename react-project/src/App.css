@@ -1,0 +1,323 @@
+#root {
+  margin: 0px;
+  direction: ltr;
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  font-family: 'Tilt Neon', 'specimen', 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande';
+  /* font-family: 'Quicksand', sans-serif; */
+  /* background-image: url("../src/image/1.png"); */
+  /* background-attachment: fixed;
+  background-size: cover;
+  background-position: center; */
+  flex-direction: column;
+}
+
+.form {
+  width: 380px;
+  max-width: 380px;
+  padding: 2rem;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  direction: ltr;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+}
+
+.post,
+.info,
+.photos,
+.albums,
+.todo {
+  width: 70%;
+  max-width: 70%;
+  padding: 2rem;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  direction: ltr;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+  margin-bottom: 2%;
+  ;
+}
+
+.post {
+  width: 80%;
+  max-width: 80%;
+  padding: 2rem;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  direction: ltr;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+}
+
+button {
+  margin: 1%;
+}
+
+.inputComment {
+  display: block;
+  width: 100%;
+  padding: 0.75rem;
+  box-sizing: border-box;
+  border-radius: 4px;
+  border: 1px solid #dddddd;
+  outline: none;
+  background: #f8f8f8;
+  transition: 0.2s, black 0.2s;
+  margin-bottom: 0.5rem;
+}
+
+.deleteBtn {
+  margin: 1%;
+}
+
+.inputItem {
+  display: block;
+  width: 50%;
+  padding: 0.75rem;
+  box-sizing: border-box;
+  border-radius: 4px;
+  border: 1px solid #dddddd;
+  outline: none;
+  background: #f8f8f8;
+  transition: 0.2s, black 0.2s;
+  margin-bottom: 0.5rem;
+}
+
+.inputComment,
+.inputItem,
+.input:focus {
+  border-color: #079292;
+  background: #ffffff;
+}
+
+.input {
+  display: block;
+  width: 100%;
+  padding: 0.75rem;
+  box-sizing: border-box;
+  border-radius: 4px;
+  border: 1px solid #dddddd;
+  outline: none;
+  background: #eeeeee;
+  transition: 0.2s, black 0.2s;
+  margin-bottom: 0.5rem;
+}
+
+.btnOkSignUp,
+.btnSaveDetails,
+.btnOkLogIn {
+  width: 100%;
+  padding: 1rem 2rem;
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  outline: none;
+  cursor: pointer;
+  background: #079292;
+  margin-bottom: 1rem;
+}
+
+.button:hover {
+  background: #079292;
+}
+
+.button:active {
+  transform: scale(0.98);
+}
+
+.text {
+  text-align: center;
+}
+
+.link:hover {
+  color: #079292;
+}
+
+.link {
+  color: #000000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+p {
+  margin-top: 0;
+}
+
+.error {
+  font-weight: bold;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+.title {
+  text-align: center;
+  color: #000000;
+  font-size: 40px;
+}
+
+nav {
+  background-color: #99D9EA;
+  padding: 0;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: flex-end;
+  font-size: 0;
+}
+
+nav a {
+  font-size: 22px;
+  text-decoration: none;
+  text-align: center;
+  color: rgb(0, 0, 0);
+  cursor: pointer;
+  text-shadow: 0 0 1px;
+  padding: 10px 20px 13px 20px;
+  transition: 0.7s;
+}
+
+nav a:hover {
+  transform: scale(1.2);
+}
+
+.page {
+  display: grid;
+  grid-gap: 5px;
+  grid-template-rows: auto;
+  justify-items: start;
+  justify-content: space-evenly;
+  margin-top: 15px;
+  font-size: 20px;
+}
+
+.welcome {
+  font-size: 120px;
+  text-align: center;
+}
+
+.searchTitle {
+  background-color: yellow;
+}
+
+/* #login{
+  background-image: url('./image/1.png');
+}
+#todos{
+  background-image: url('./image/IMG_5587.JPG');
+}
+#posts{
+  background-image: url('./image/IMG_20230808_131241.jpg');
+}
+#albums{
+  background-image: url('./image/IMG-20230807-WA0020.jpeg');
+} */
+
+
+
+/*שיניתי מפה*/
+
+.photos-container {
+  text-align: center;
+}
+
+.add-photo-button {
+  background-color: #99D9EA;
+  color: bl;
+  border: none;
+  padding: 10px 20px;
+  text-align: left;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.add-photo-button:hover {
+  background-color: #99D9EA;
+}
+
+.photo-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start; /* שינוי כאן */
+}
+
+/* סגנונות נוספים עבור התמונות בעמוד Photos */
+.photo {
+  position: relative;
+  overflow: hidden;
+  margin: 10px;
+  width: 200px;
+}
+
+.photo img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.photo-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.photo:hover .photo-overlay {
+  opacity: 1;
+}
+
+/* סגנונות נוספים עבור כפתורי עריכה ומחיקה */
+.photo-overlay button {
+  background-color: #99D9EA;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 4px;
+  cursor: pointer;
+}
+
+.photo-overlay button:hover {
+  background-color: #99D9EA;
+}
+
+/* סגנונות נוספים עבור שדות העריכה */
+.photo-overlay input {
+  padding: 5px;
+  margin: 5px;
+  width: 150px;
+}
+
+.buttons_div {
+  display: flex;
+  flex-direction: row; /* מאריך את האלמנטים בכיוון אופקי (מה שברצונך) */
+  justify-content: space-between; /* מסדר בין האלמנטים כך שיהיה רווח ביניהם */
+}
