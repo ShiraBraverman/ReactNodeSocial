@@ -4,7 +4,6 @@ const controller = require('../controllers/usersController')
 router.use(express.json());
 router.use(express.urlencoded({ extended: true }));
 
-
 router.get("/", async (req, res) => {
     res.send(await controller.getAll());
 })

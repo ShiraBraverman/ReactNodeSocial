@@ -3,10 +3,8 @@ const pool = require('../db.js');
 async function getUsers() {
     try {
         const sql = 'SELECT * FROM users';
-
         const [rows, fields] = await pool.query(sql);
         console.log(rows);
-
         return rows;
     } catch (err) {
         console.log(err);
@@ -16,11 +14,8 @@ async function getUsers() {
 async function getUser(id) {
     try {
         const sql = 'SELECT * FROM users where id=?';
-
         const result = await pool.query(sql, [id]);
-
         return result[0][0];
-
     } catch (err) {
         console.log(err);
     }
@@ -29,11 +24,8 @@ async function getUser(id) {
 async function createUser(username, email, phone) {
     try {
         const sql = "INSERT INTO users (`username`, `email`, `phone`) VALUES(?, ?, ?)";
-
         const result = await pool.query(sql, [username, email, phone]);
-
         return result[0];
-
     } catch (err) {
         console.log(err);
     }
