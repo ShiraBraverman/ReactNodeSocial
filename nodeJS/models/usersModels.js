@@ -26,40 +26,38 @@ async function getUser(id) {
     }
 }
 
+async function createUser(username, email, phone) {
+    try {
+        const sql = "INSERT INTO users (`username`, `email`, `phone`) VALUES(?, ?, ?)";
 
+        const result = await pool.query(sql, [username, email, phone]);
 
-//   async function createUser(name,location) {
-//     try {
-//       const sql = "INSERT INTO users (`name`, `location`) VALUES(?, ?)";
-//       ;
+        return result[0];
 
-//       const result = await pool.query(sql,[name,location]);
+    } catch (err) {
+        console.log(err);
+    }
+}
 
-//       return result[0];
+async function deleteUser(id) {
+    try {
+        const sql = `DELETE FROM users WHERE id = ?`;
+        const result = await pool.query(sql, [id]);
+    } catch (err) {
+        console.error('Error deleting user:', err);
+        throw err;
+    }
+}
 
-//     } catch (err) {
-//       console.log(err);
-//     }
-//   }
-//   async function deleteBranch(id) {
-//     try {
-//       const sql = `DELETE FROM branches WHERE id = ?`;
-//       const result = await pool.query(sql, [id]);
-//     } catch (err) {
-//       console.error('Error deleting toy:', err);
-//       throw err;
-//     }
-//   }
-//   async function updateBranch(id,name,location)  {
-//     try {
-//       const sql = `UPDATE branches SET name = ?, location = ? WHERE id = ?`;
-//       const result = await pool.query(sql, [name,location, id]);
-//       return result;
-//     } catch (err) {
-//       console.error('Error updating branch:', err);
-//       throw err;
-//     }
-//   }
+async function updateUser(username, email, phone) {
+    try {
+        const sql = `UPDATE user SET username = ?, email = ?, phone = ? WHERE id = ?`;
+        const result = await pool.query(sql, [username, email, phone]);
+        return result;
+    } catch (err) {
+        console.error('Error updating user:', err);
+        throw err;
+    }
+}
 
-// module.exports = {updateBranch, getBranch, getBranches, deleteBranch, createBranch}
-module.exports = { getUser,getUsers }
+module.exports = { updateUser, getUser, getUsers, deleteUser, createUser }

@@ -18,22 +18,21 @@ router.get("/:id", async (req, res) => {
 router.post("/", async (req, res) => {
     try {
         const response = await controller.create(req.body.username, req.body.email, req.body.phone)
-        res.send(await getUser(response.id));
+        res.send(await controller.getById(response.id));
     } catch (err) {
         throw err;
     }
-
 });
 
 router.put("/:id", async (req, res) => {
     const id = req.params.id;
-    const response = await updateToy(id, req.body.name, req.body.price, req.body.description)
-    res.send(await getUser(id));
+    const response = await controller.update(id, req.body.username, req.body.email, req.body.phone)
+    res.send(await controller.getById(id));
 });
 
 router.delete("/:id", async (req, res) => {
     const id = req.params.id;
-    const response = await deleteToy(id);
+    const response = await controller.deleteUser(id);
     res.send();
 });
 
