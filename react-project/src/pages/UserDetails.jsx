@@ -8,26 +8,9 @@ const UserDetails = () => {
     const [UseDetailsError, setUseDetailsError] = useState('');
     const [userDetails, setUserDetails] = useState(
         {
-            name: '',
-            // username: '',
+            username: '',
             email: "",
-            address: {
-                street: "",
-                suite: "",
-                city: "",
-                zipcode: "",
-                geo: {
-                    lat: "",
-                    lng: ""
-                }
-            },
             phone: "",
-            // website: "",
-            company: {
-                name: "",
-                catchPhrase: "",
-                bs: ""
-            }
         });
 
     const handleChange = (field, value) => {
@@ -38,7 +21,7 @@ const UserDetails = () => {
     };
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (!userDetails.name || !userDetails.address.city || !userDetails.address.street || !userDetails.address.suite || !userDetails.address.zipcode || !userDetails.address.geo.lat || !userDetails.address.geo.lng || !userDetails.company.name || !userDetails.company.catchPhrase || !userDetails.company.bs || !userDetails.phone) {
+        if (!userDetails.userName   || !userDetails || !userDetails.phone) {
             setUseDetailsError('Please fill in all fields.');
             return;
         }
