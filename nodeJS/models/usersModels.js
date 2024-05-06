@@ -41,10 +41,10 @@ async function deleteUser(id) {
     }
 }
 
-async function updateUser(username, email, phone) {
+async function updateUser(id,username, email, phone) {
     try {
         const sql = `UPDATE user SET username = ?, email = ?, phone = ? WHERE id = ?`;
-        const result = await pool.query(sql, [username, email, phone]);
+        const result = await pool.query(sql, [username, email, phone,id]);
         return result;
     } catch (err) {
         console.error('Error updating user:', err);

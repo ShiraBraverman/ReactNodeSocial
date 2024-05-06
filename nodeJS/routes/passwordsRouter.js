@@ -15,34 +15,18 @@ router.get("/:id", async (req, res) => {
     res.send(user)
 });
 
-// router.post("/", async (req, res) => {
-//     try {
-//         const response = await controller.create(req.body.userId, req.body.password)
-//         res.send(await controller.getById(response.id));
-//     } catch (err) {
-//         throw err;
-//     }
-// });
-
 router.post("/", async (req, res) => {
     try {
         const { userId, password } = req.body;
-
         if (!userId || !password) {
             return res.status(400).json({ error: "Missing required fields" });
         }
-
         const response = await controller.create(userId, password);
         res.status(201).json(response);
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
 });
-
-
-
-
-
 
 router.put("/:id", async (req, res) => {
     const id = req.params.id;

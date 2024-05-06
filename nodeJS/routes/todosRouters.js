@@ -15,23 +15,12 @@ router.get("/:id", async (req, res) => {
     res.send(user)
 });
 
-// router.post("/", async (req, res) => {
-//     try {
-//         const response = await controller.create(req.body.username, req.body.email, req.body.phone)
-//         res.send(await controller.getById(response.id));
-//     } catch (err) {
-//         throw err;
-//     }
-// });
-
 router.post("/", async (req, res) => {
     try {
         const { userId, title, completed } = req.body;
-
         if (!userId || !title || !completed) {
             return res.status(400).json({ error: "Missing required fields" });
         }
-
         const response = await controller.create(userId, title, completed);
         res.status(201).json(response);
     } catch (err) {
