@@ -5,6 +5,7 @@ router.use(express.json());
 router.use(express.urlencoded({ extended: true }));
 
 router.get("/", async (req, res) => {
+    console.log('hi')
     res.send(await controller.getAll());
 })
 
@@ -35,4 +36,4 @@ router.delete("/:id", async (req, res) => {
     res.send();
 });
 
-module.exports = router
+module.exports = router;

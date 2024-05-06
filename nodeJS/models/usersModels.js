@@ -1,6 +1,7 @@
 const pool = require('../db.js');
 
 async function getUsers() {
+    console.log('hi')
     try {
         const sql = 'SELECT * FROM users';
         const [rows, fields] = await pool.query(sql);
@@ -23,7 +24,7 @@ async function getUser(id) {
 
 async function createUser(username, email, phone) {
     try {
-        const sql = "INSERT INTO users (`username`, `email`, `phone`) VALUES(?, ?, ?)";
+        const sql = 'INSERT INTO users (`username`, `email`, `phone`) VALUES(?, ?, ?)';
         const result = await pool.query(sql, [username, email, phone]);
         return result[0];
     } catch (err) {
@@ -33,7 +34,7 @@ async function createUser(username, email, phone) {
 
 async function deleteUser(id) {
     try {
-        const sql = `DELETE FROM users WHERE id = ?`;
+        const sql = 'DELETE FROM users WHERE id = ?';
         const result = await pool.query(sql, [id]);
     } catch (err) {
         console.error('Error deleting user:', err);
@@ -43,7 +44,7 @@ async function deleteUser(id) {
 
 async function updateUser(id,username, email, phone) {
     try {
-        const sql = `UPDATE user SET username = ?, email = ?, phone = ? WHERE id = ?`;
+        const sql = 'UPDATE user SET username = ?, email = ?, phone = ? WHERE id = ?';
         const result = await pool.query(sql, [username, email, phone,id]);
         return result;
     } catch (err) {

@@ -41,3 +41,4 @@ async function getById(id) {
 }
 
 module.exports = { create, getAll, getById, deleteUser, update }
+
