@@ -2,23 +2,23 @@ const model = require('../models/postsModels');
 
 async function create(userId, title, body) {
     try {
-        return model.createTodo(userId, title, body);
+        return model.createPost(userId, title, body);
     } catch (err) {
         throw err;
     }
 }
 
-async function update(id, userId, title, completed) {
+async function update(id, userId, title, body) {
     try {
-        return model.updateTodo(id, userId, title, completed);
+        return model.updatePost(id, userId, title, body);
     } catch (err) {
         throw err;
     }
 }
 
-async function deleteTodo(id) {
+async function deletePost(id) {
     try {
-        return model.deleteTodo(id);
+        return model.deletePost(id);
     } catch (err) {
         throw err;
     }
@@ -26,7 +26,7 @@ async function deleteTodo(id) {
 
 async function getAll() {
     try {
-        return model.getTodo();
+        return model.getPost();
     } catch (err) {
         throw err;
     }
@@ -34,10 +34,10 @@ async function getAll() {
 
 async function getById(id) {
     try {
-        return model.getTodo(id);
+        return model.getPost(id);
     } catch (err) {
         throw err;
     }
 }
 
-module.exports = { create, getAll, getById, deleteTodo, update }
+module.exports = { create, getAll, getById, deletePost, update }
