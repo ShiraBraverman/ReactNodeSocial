@@ -26,7 +26,7 @@ async function deletePost(id) {
 
 async function getAll() {
     try {
-        return model.getPost();
+        return model.getPosts();
     } catch (err) {
         throw err;
     }

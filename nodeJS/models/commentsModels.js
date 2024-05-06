@@ -23,7 +23,7 @@ async function getComment(id) {
 
 async function createComment(postId, name, email, body) {
     try {
-        const sql = "INSERT INTO comments (`postId`, `name`,`email`, `body`) VALUES(?, ?, ?)";
+        const sql = 'INSERT INTO comments (`postId`, `name`,`email`, `body`) VALUES(?, ?, ?)';
         const result = await pool.query(sql, [postId, name, email, body]);
         return result[0];
     } catch (err) {
@@ -33,7 +33,7 @@ async function createComment(postId, name, email, body) {
 
 async function deleteComment(id) {
     try {
-        const sql = `DELETE FROM comments WHERE id = ?`;
+        const sql = 'DELETE FROM comments WHERE id = ?';
         const result = await pool.query(sql, [id]);
     } catch (err) {
         console.error('Error deleting comment:', err);
@@ -43,7 +43,7 @@ async function deleteComment(id) {
 
 async function updateComment(id, postId, name, email, body) {
     try {
-        const sql = `UPDATE comments SET postId = ?, name = ?, email = ?, body = ? WHERE id = ?`;
+        const sql = 'UPDATE comments SET postId = ?, name = ?, email = ?, body = ? WHERE id = ?';
         const result = await pool.query(sql, [postId, name, email, body, id]);
         return result;
     } catch (err) {

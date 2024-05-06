@@ -2,7 +2,7 @@ const model = require('../models/passwordsModels');
 
 async function create(userId, password) {
     try {
-        return model.createPhoto(userId,password);
+        return model.createPassword(userId,password);
     } catch (err) {
         throw err;
     }
@@ -26,7 +26,7 @@ async function deletePassword(id) {
 
 async function getAll() {
     try {
-        return model.getPassword();
+        return model.getPasswords();
     } catch (err) {
         throw err;
     }

@@ -26,7 +26,7 @@ async function deleteAlbum(id) {
 
 async function getAll() {
     try {
-        return model.getAlbum();
+        return model.getAlbums();
     } catch (err) {
         throw err;
     }

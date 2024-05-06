@@ -5,7 +5,6 @@ router.use(express.json());
 router.use(express.urlencoded({ extended: true }));
 
 router.get("/", async (req, res) => {
-    console.log('hi')
     res.send(await controller.getAll());
 })
 

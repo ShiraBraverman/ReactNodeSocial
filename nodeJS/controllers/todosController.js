@@ -26,7 +26,7 @@ async function deleteTodo(id) {
 
 async function getAll() {
     try {
-        return model.getTodo();
+        return model.getTodos();
     } catch (err) {
         throw err;
     }

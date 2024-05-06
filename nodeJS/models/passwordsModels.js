@@ -23,7 +23,7 @@ async function getPassword(id) {
 
 async function createPassword(userId, password) {
     try {
-        const sql = "INSERT INTO passwords (`userId`, `password`) VALUES(?, ?, ?)";
+        const sql = 'INSERT INTO passwords (`userId`, `password`) VALUES(?, ?, ?)';
         const result = await pool.query(sql, [userId, password]);
         return result[0];
     } catch (err) {
@@ -33,7 +33,7 @@ async function createPassword(userId, password) {
 
 async function deletePassword(id) {
     try {
-        const sql = `DELETE FROM passwords WHERE id = ?`;
+        const sql = 'DELETE FROM passwords WHERE id = ?';
         const result = await pool.query(sql, [id]);
     } catch (err) {
         console.error('Error deleting password:', err);
@@ -43,7 +43,7 @@ async function deletePassword(id) {
 
 async function updatePassword(id, userId, password) {
     try {
-        const sql = `UPDATE passwords SET userId = ?, password = ? WHERE id = ?`;
+        const sql = 'UPDATE passwords SET userId = ?, password = ? WHERE id = ?';
         const result = await pool.query(sql, [userId, password, id]);
         return result;
     } catch (err) {

@@ -26,7 +26,7 @@ async function deleteComment(id) {
 
 async function getAll() {
     try {
-        return model.getComment();
+        return model.getComments();
     } catch (err) {
         throw err;
     }

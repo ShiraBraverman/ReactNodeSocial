@@ -26,7 +26,7 @@ async function deletePhoto(id) {
 
 async function getAll() {
     try {
-        return model.getPhoto();
+        return model.getPhotos();
     } catch (err) {
         throw err;
     }

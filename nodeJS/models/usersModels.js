@@ -1,7 +1,6 @@
 const pool = require('../db.js');
 
 async function getUsers() {
-    console.log('hi')
     try {
         const sql = 'SELECT * FROM users';
         const [rows, fields] = await pool.query(sql);
