@@ -8,9 +8,9 @@ async function create(userId, albumId,title,url,thumbnailUrl) {
     }
 }
 
-async function update(id,  albumId,title,url,thumbnailUrl) {
+async function update(id,albumId,title,url,thumbnailUrl) {
     try {
-        return model.updatePhoto(id,  albumId,title,url,thumbnailUrl);
+        return model.updatePhoto(id, albumId,title,url,thumbnailUrl);
     } catch (err) {
         throw err;
     }
@@ -24,9 +24,9 @@ async function deletePhoto(id) {
     }
 }
 
-async function getAll() {
+async function getAll(albumId, page, limit) {
     try {
-        return model.getPhotos();
+        return model.getPhotos(albumId, page, limit);
     } catch (err) {
         throw err;
     }

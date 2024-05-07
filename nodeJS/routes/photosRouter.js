@@ -6,7 +6,10 @@ router.use(express.urlencoded({ extended: true }));
 
 
 router.get("/", async (req, res) => {
-    res.send(await controller.getAll());
+    const albumId = req.query.albumId;
+    const page = req.query._page;
+    const limit = req.query._limit;
+    res.send(await controller.getAll(albumId, page, limit));
 })
 
 router.get("/:id", async (req, res) => {
@@ -30,7 +33,7 @@ router.post("/", async (req, res) => {
 
 router.put("/:id", async (req, res) => {
     const id = req.params.id;
-    const response = await controller.update(id, req.body.albumId, req.body.title, req.body.url,req.body.thumbnailUrl)
+    const response = await controller.update(id, req.body.albumId, req.body.title, req.body.url, req.body.thumbnailUrl)
     res.send(await controller.getById(id));
 });
 
