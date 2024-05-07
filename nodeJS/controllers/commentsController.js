@@ -32,6 +32,14 @@ async function getAll() {
     }
 }
 
+async function getByPostId(postId) {
+    try {
+        return model.getByPostId(postId);
+    } catch (err) {
+        throw err;
+    }
+}
+
 async function getById(id) {
     try {
         return model.getComment(id);
@@ -40,4 +48,4 @@ async function getById(id) {
     }
 }
 
-module.exports = { create, getAll, getById, deleteComment, update }
+module.exports = { create, getAll, getById, deleteComment, update,getByPostId }

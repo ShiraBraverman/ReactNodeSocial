@@ -32,6 +32,15 @@ async function getAll() {
     }
 }
 
+async function getByUserid(userid) {
+    try {
+        return model.getByUserid(userid);
+    } catch (err) {
+        throw err;
+    }
+}
+
+
 async function getById(id) {
     try {
         return model.getAlbum(id);
@@ -40,4 +49,4 @@ async function getById(id) {
     }
 }
 
-module.exports = { create, getAll, getById, deleteAlbum, update }
+module.exports = { create, getAll, getById, deleteAlbum, update,getByUserid }

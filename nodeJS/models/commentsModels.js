@@ -1,9 +1,9 @@
 const pool = require('../db.js');
 
-async function getComments() {
+async function getByPostId(postId) {
     try {
-        const sql = 'SELECT * FROM comments';
-        const [rows, fields] = await pool.query(sql);
+        const sql = 'SELECT * FROM comments where postId=?';
+        const [rows, fields] = await pool.query(sql, [postId]);
         console.log(rows);
         return rows;
     } catch (err) {
@@ -52,4 +52,4 @@ async function updateComment(id, postId, name, email, body) {
     }
 }
 
-module.exports = { updateComment, getComment, getComments, deleteComment, createComment }
+module.exports = { updateComment, getComment, getByPostId, deleteComment, createComment }

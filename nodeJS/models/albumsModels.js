@@ -1,9 +1,9 @@
 const pool = require('../db.js');
 
-async function getAlbums() {
+async function getByUserid(userid) {
     try {
-        const sql = 'SELECT * FROM albums';
-        const [rows, fields] = await pool.query(sql);
+        const sql = 'SELECT * FROM albums where userId=?';
+        const [rows, fields] = await pool.query(sql, [userid]);
         console.log(rows);
         return rows;
     } catch (err) {
@@ -13,7 +13,7 @@ async function getAlbums() {
 
 async function getAlbum(id) {
     try {
-        const sql = 'SELECT * FROM album where id=?';
+        const sql = 'SELECT * FROM albums where id=?';
         const result = await pool.query(sql, [id]);
         return result[0][0];
     } catch (err) {
@@ -52,4 +52,4 @@ async function updateAlbum(id, userId, title) {
     }
 }
 
-module.exports = { updateAlbum, getAlbum, getAlbums, deleteAlbum, createAlbum }
+module.exports = { updateAlbum, getAlbum, getByUserid, deleteAlbum, createAlbum }
