@@ -24,14 +24,6 @@ async function deleteComment(id) {
     }
 }
 
-async function getAll() {
-    try {
-        return model.getComments();
-    } catch (err) {
-        throw err;
-    }
-}
-
 async function getByPostId(postId) {
     try {
         return model.getByPostId(postId);
@@ -48,4 +40,4 @@ async function getById(id) {
     }
 }
 
-module.exports = { create, getAll, getById, deleteComment, update,getByPostId }
+module.exports = { create, getById, deleteComment, update,getByPostId }

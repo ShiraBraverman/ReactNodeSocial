@@ -6,7 +6,8 @@ router.use(express.urlencoded({ extended: true }));
 
 
 router.get("/", async (req, res) => {
-    res.send(await controller.getAll());
+    const userId = req.query.postId;
+    res.send(await controller.getByPostId(userId));
 })
 
 router.get("/:id", async (req, res) => {
@@ -30,7 +31,7 @@ router.post("/", async (req, res) => {
 
 router.put("/:id", async (req, res) => {
     const id = req.params.id;
-    const response = await controller.update(id, req.body.postId, req.body.name,req.body.email,req.body.body)
+    const response = await controller.update(id, req.body.postId, req.body.name, req.body.email, req.body.body)
     res.send(await controller.getById(id));
 });
 
