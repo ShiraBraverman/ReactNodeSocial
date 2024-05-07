@@ -1,9 +1,9 @@
 const pool = require('../db.js');
 
-async function getTodos() {
+async function getByUserid(userid) {
     try {
-        const sql = 'SELECT * FROM todos';
-        const [rows, fields] = await pool.query(sql);
+        const sql = 'SELECT * FROM todos where userId=?';
+        const [rows, fields] = await pool.query(sql, [userid]);
         console.log(rows);
         return rows;
     } catch (err) {
@@ -52,4 +52,4 @@ async function updateTodo(id, userId, title, completed) {
     }
 }
 
-module.exports = { updateTodo, getTodo, getTodos, deleteTodo, createTodo }
+module.exports = { updateTodo, getTodo, getByUserid, deleteTodo, createTodo }

@@ -9,7 +9,7 @@ const logIn = () => {
     const [password, setPassword] = useState('');
     const [loginError, setLoginError] = useState('');
 
-    const {user, setUser} = useContext(UserContext);
+    const { user, setUser } = useContext(UserContext);
     function handleLogin() {
         if (!userName || !password) {
             setLoginError('Please fill in all fields.');
@@ -20,18 +20,19 @@ const logIn = () => {
         fetch(url)
             .then(res => res.json())
             .then(user => {
-                foundUser = user[0];
+                foundUser = user;
                 if (!foundUser) {
                     setLoginError("You are not exist in the system, please sign up");
                 }
                 else {
-                    if (foundUser.website == password) {
+                    // if (foundUser.website == password) {
+                    if (true) {
                         localStorage.setItem("currentUser", JSON.stringify(foundUser));
                         setUser(foundUser);
                         setUserName("");
                         setPassword("");
                         setLoginError('Registration successful');
-                        navigate('/home')
+                        navigate('/home');
                     }
                     else {
                         setLoginError("no currect password")

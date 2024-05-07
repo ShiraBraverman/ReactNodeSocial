@@ -21,6 +21,16 @@ async function getUser(id) {
     }
 }
 
+async function getByUsername(username) {
+    try {
+        const sql = 'SELECT * FROM users where username=?';
+        const result = await pool.query(sql, [username]);
+        return result[0][0];
+    } catch (err) {
+        console.log(err);
+    }
+}
+
 async function createUser(username, email, phone) {
     try {
         const sql = 'INSERT INTO users (`username`, `email`, `phone`) VALUES(?, ?, ?)';
@@ -41,10 +51,10 @@ async function deleteUser(id) {
     }
 }
 
-async function updateUser(id,username, email, phone) {
+async function updateUser(id, username, email, phone) {
     try {
         const sql = 'UPDATE user SET username = ?, email = ?, phone = ? WHERE id = ?';
-        const result = await pool.query(sql, [username, email, phone,id]);
+        const result = await pool.query(sql, [username, email, phone, id]);
         return result;
     } catch (err) {
         console.error('Error updating user:', err);
@@ -52,4 +62,4 @@ async function updateUser(id,username, email, phone) {
     }
 }
 
-module.exports = { updateUser, getUser, getUsers, deleteUser, createUser }
+module.exports = { updateUser, getUser, getUsers, deleteUser, createUser, getByUsername }

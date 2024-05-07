@@ -24,9 +24,9 @@ async function deleteTodo(id) {
     }
 }
 
-async function getAll() {
+async function getByUserid(userid) {
     try {
-        return model.getTodos();
+        return model.getByUserid(userid);
     } catch (err) {
         throw err;
     }
@@ -40,4 +40,4 @@ async function getById(id) {
     }
 }
 
-module.exports = { create, getAll, getById, deleteTodo, update }
+module.exports = { create, getByUserid, getById, deleteTodo, update }

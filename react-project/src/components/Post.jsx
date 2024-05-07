@@ -1,7 +1,7 @@
 import { React, useState } from 'react'
 import { useNavigate, Outlet } from 'react-router-dom';
 
-const Post = ({ post, posts, searchCriteria, updatePostToShow, userId ,postInfo, setPostInfo}) => {
+const Post = ({ post, posts, searchCriteria, updatePostToShow, userId, postInfo, setPostInfo }) => {
     const navigate = useNavigate();
     const [isUpdatePost, setIsUpdatePost] = useState(false);
     const [showComments, setShowComments] = useState(false);
@@ -86,16 +86,31 @@ const Post = ({ post, posts, searchCriteria, updatePostToShow, userId ,postInfo,
         }
     };
 
+    const highlightSearchTerm = (title) => {
+        const index = title.toLowerCase().indexOf(searchCriteria.toLowerCase());
+        if (index !== -1) {
+            return (
+                <span>
+                    {title.substring(0, index)}
+                    <strong className="searchTitle">{title.substring(index, index + searchCriteria.length)}</strong>
+                    {title.substring(index + searchCriteria.length)}
+                </span>
+            );
+        }
+        return title;
+    };
+
     return (
         <div>
             {(post.title.toLowerCase().includes(searchCriteria) || post.id.toString().includes(searchCriteria)) &&
                 <div className='post' key={post.id}>
                     <span> {post.id}. </span>
-                    <span className='inputItem' onClick={() => handlePostClick()}>{post.title}</span>
+                    <span className='inputItem' onClick={() => handlePostClick()}>{highlightSearchTerm(post.title)}</span>
                     {postInfo == post.id &&
                         <div>
+                            <span className='inputItem'>{post.body}</span>
                             {userId == post.userId && <div>
-                                <span className='inputItem'>{post.body}</span>  <button onClick={() => deletePost(post.id)}> 🗑️ </button>
+                                <button onClick={() => deletePost(post.id)}> 🗑️ </button>
                                 <button onClick={() => setIsUpdatePost(!isUpdatePost)}>✏️</button>
                                 {isUpdatePost && (
                                     <div>

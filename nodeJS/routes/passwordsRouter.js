@@ -5,15 +5,15 @@ router.use(express.json());
 router.use(express.urlencoded({ extended: true }));
 
 
-router.get("/", async (req, res) => {
-    res.send(await controller.getAll());
-})
+// router.get("/", async (req, res) => {
+//     res.send(await controller.getAll());
+// })
 
-router.get("/:id", async (req, res) => {
-    const id = req.params.id;
-    const user = await controller.getById(id);
-    res.send(user)
-});
+// router.get("/:id", async (req, res) => {
+//     const id = req.params.id;
+//     const user = await controller.getById(id);
+//     res.send(user)
+// });
 
 router.post("/", async (req, res) => {
     try {

@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 const Album = ({ album, searchCriteria }) => {
   const navigate = useNavigate();
   const handleAlbumClick = (() => {
-    // navigate(`${album.id}/photos`);
     navigate(`${album.id}/photos`, { state: album });
   });
 

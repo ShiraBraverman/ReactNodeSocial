@@ -6,8 +6,12 @@ router.use(express.urlencoded({ extended: true }));
 
 
 router.get("/", async (req, res) => {
-    res.send(await controller.getAll());
-})
+if (req.query.userId) {
+    const todos = await controller.getByUserid(req.query.userId);
+    res.send(todos);
+} else{
+    return res.status(400).json({ error: "Missing required fields" });
+}})
 
 router.get("/:id", async (req, res) => {
     const id = req.params.id;
