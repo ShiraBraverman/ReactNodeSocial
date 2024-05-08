@@ -25,6 +25,7 @@ async function createTodo(userId, title, completed) {
     try {
         const sql = 'INSERT INTO todos (`userId`, `title`, `completed`) VALUES(?, ?, ?)';
         const result = await pool.query(sql, [ userId, title, completed]);
+        
         return result[0];
     } catch (err) {
         console.log(err);

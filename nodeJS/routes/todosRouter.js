@@ -22,11 +22,9 @@ router.get("/:id", async (req, res) => {
 router.post("/", async (req, res) => {
     try {
         const { userId, title, completed } = req.body;
-        if (!userId || !title || !completed) {
-            return res.status(400).json({ error: "Missing required fields" });
-        }
         const response = await controller.create(userId, title, completed);
-        res.status(201).json(response);
+        const data = await controller.getById(response.insertId);
+        res.status(201).json(data);
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
