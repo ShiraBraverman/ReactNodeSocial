@@ -3,9 +3,8 @@ const pool = require('../db.js');
 async function authenticateUser(username, password) {
     try {
         // בצע שאילתת SQL לבדיקת אימות המשתמש
-        const sql = 'SELECT * FROM passwords WHERE username = ? AND password = ?';
+        const sql = 'SELECT * FROM passwords WHERE userId = ? AND password1 = ?';
         const result = await pool.query(sql, [username, password]);
-
         // אם נמצא משתמש עם שם משתמש וסיסמה תואמים
         // החזר true
         // אחרת, החזר false

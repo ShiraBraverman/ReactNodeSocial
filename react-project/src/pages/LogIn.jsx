@@ -32,7 +32,7 @@ const logIn = () => {
             .then(response => response.json())
             .then(data => {
                 console.log(data);
-                foundUser = user;
+                foundUser = data;
                 if (!foundUser) {
                     setLoginError("incorrect passwordor username");
                 }
@@ -46,7 +46,7 @@ const logIn = () => {
                 }
             })
             .catch(error => {
-                setUseDetailsError('Error creating user', error);
+                setLoginError('Error', error);
             });
     };
     return (

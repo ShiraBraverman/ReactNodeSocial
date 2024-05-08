@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const controller = require('../controllers/passwordsController')
-const users = require('../controllers/usersController')
+const userscontroller = require('../controllers/usersController')
 router.use(express.json());
 router.use(express.urlencoded({ extended: true }));
 
@@ -11,10 +11,13 @@ router.post("/", async (req, res) => {
         if (!username || !password) {
             return res.status(400).json({ error: "Missing required fields" });
         }
-        const authenticated = await controller.authenticate(username, password);
+        console.log('1')
+        const user = await userscontroller.getByUsername(username);
+        console.log('2')
+        const authenticated = await controller.authenticate(user.id, password);
+        console.log(authenticated)
         if (authenticated) {
-            const users = await controller.getByUsername(req.query.username);
-            res.send(users);
+            res.send(user);
         }
         else {
             return res.status(403).json({ error: "Incorrect password or username" });
