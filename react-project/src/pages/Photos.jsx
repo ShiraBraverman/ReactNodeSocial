@@ -6,7 +6,7 @@ const Photos = () => {
   const navigate = useNavigate();
   const { state } = useLocation();
   const { title, id } = state || {};  const [photos, setPhotos] = useState([]);
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(0);
   const [hasMorePhotos, setHasMorePhotos] = useState(true);
   const [loading, setLoading] = useState(false);
   const [isAddingPhoto, setIsAddingPhoto] = useState(false);
