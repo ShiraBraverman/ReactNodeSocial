@@ -49,6 +49,7 @@ const logIn = () => {
                 setLoginError('Error', error);
             });
     };
+    
     return (
         <div className='form'>
             <h2 className="title">Log in</h2><br />

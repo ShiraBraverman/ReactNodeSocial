@@ -19,9 +19,10 @@ const UserDetails = () => {
             [field]: value
         }));
     };
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (!userDetails.userName   || !userDetails || !userDetails.phone) {
+        if (!userDetails.username   || !userDetails || !userDetails.phone) {
             setUseDetailsError('Please fill in all fields.');
             return;
         }
@@ -30,7 +31,7 @@ const UserDetails = () => {
             return;
         }
 
-        const url = 'http://localhost:3000/users';
+        const url = 'http://localhost:3000/signup';
         const requestOptions = {
             method: 'POST',
             headers: {
@@ -42,6 +43,7 @@ const UserDetails = () => {
                 // website: user.website
             })
         };
+        
         fetch(url, requestOptions)
             .then(response => response.json())
             .then(data => {

@@ -17,6 +17,7 @@ const postsRouter = require('./routes/postsRouter');
 const todosRouter = require('./routes/todosRouter');
 const passwordRouter = require('./routes/passwordsRouter');
 const loginRouter = require('./routes/loginRouter');
+const signupRouter = require('./routes/signupRouter');
 
 const logger = (req, res, next) => {
   const url = req.url;
@@ -38,6 +39,7 @@ app.use('/todos', todosRouter);
 app.use('/users', usersRouter);
 app.use('/passwords', passwordRouter);
 app.use('/login', loginRouter);
+app.use('/signup', signupRouter);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
