@@ -1,25 +1,19 @@
 const pool = require('../db.js');
 
-// async function getPasswords() {
-//     try {
-//         const sql = 'SELECT * FROM passwords';
-//         const [rows, fields] = await pool.query(sql);
-//         console.log(rows);
-//         return rows;
-//     } catch (err) {
-//         console.log(err);
-//     }
-// }
+async function authenticateUser(username, password) {
+    try {
+        // בצע שאילתת SQL לבדיקת אימות המשתמש
+        const sql = 'SELECT * FROM passwords WHERE username = ? AND password = ?';
+        const result = await pool.query(sql, [username, password]);
 
-// async function getPassword(id) {
-//     try {
-//         const sql = 'SELECT * FROM passwords where id=?';
-//         const result = await pool.query(sql, [id]);
-//         return result[0][0];
-//     } catch (err) {
-//         console.log(err);
-//     }
-// }
+        // אם נמצא משתמש עם שם משתמש וסיסמה תואמים
+        // החזר true
+        // אחרת, החזר false
+        return result.length > 0;
+    } catch (err) {
+        throw err;
+    }
+}
 
 async function createPassword(userId, password) {
     try {
@@ -52,5 +46,4 @@ async function updatePassword(id, userId, password) {
     }
 }
 
-module.exports = { updatePassword,  deletePassword, createPassword }
-// module.exports = { updatePassword, getPassword, getPasswords, deletePassword, createPassword }
+module.exports = { updatePassword, deletePassword, authenticateUser, createPassword }
