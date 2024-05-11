@@ -4,7 +4,6 @@ require('dotenv').config();
 
 const app = express();
 
-// התחברות לבסיס הנתונים
 const pool = mysql.createPool({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,

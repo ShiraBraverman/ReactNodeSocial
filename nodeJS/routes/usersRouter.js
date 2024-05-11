@@ -5,14 +5,10 @@ router.use(express.json());
 router.use(express.urlencoded({ extended: true }));
 
 router.get("/", async (req, res) => {
-    // אם הבקשה מכילה פרמטר של username
     if (req.query.username) {
-        // קרא את המשתמשים המתאימים לשם המשתמש שנשלח
         const users = await controller.getByUsername(req.query.username);
-        // החזר את המשתמשים
         res.send(users);
     } else {
-        // אם אין שם משתמש בבקשה, החזר את כל המשתמשים
         res.send(await controller.getAll());
     }
 })

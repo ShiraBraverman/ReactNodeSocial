@@ -10,37 +10,46 @@ const logIn = () => {
     const [loginError, setLoginError] = useState('');
 
     const { user, setUser } = useContext(UserContext);
+
     function handleLogin() {
         if (!userName || !password) {
             setLoginError('Please fill in all fields.');
             return;
         }
         let foundUser;
-        const url = `http://localhost:3000/users?username=${userName}`;
-        fetch(url)
-            .then(res => res.json())
-            .then(user => {
-                foundUser = user;
+        const url = 'http://localhost:3000/login';
+        const requestOptions = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                username: userName,
+                password: password
+            })
+        };
+        fetch(url, requestOptions)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                foundUser = data;
                 if (!foundUser) {
-                    setLoginError("You are not exist in the system, please sign up");
+                    setLoginError("incorrect passwordor username");
                 }
                 else {
-                    // if (foundUser.website == password) {
-                    if (true) {
-                        localStorage.setItem("currentUser", JSON.stringify(foundUser));
-                        setUser(foundUser);
-                        setUserName("");
-                        setPassword("");
-                        setLoginError('Registration successful');
-                        navigate('/home');
-                    }
-                    else {
-                        setLoginError("no currect password")
-                    }
+                    localStorage.setItem("currentUser", JSON.stringify(foundUser));
+                    setUser(foundUser);
+                    setUserName("");
+                    setPassword("");
+                    setLoginError('Registration successful');
+                    navigate('/home');
                 }
             })
-
+            .catch(error => {
+                setLoginError('Error', error);
+            });
     };
+    
     return (
         <div className='form'>
             <h2 className="title">Log in</h2><br />

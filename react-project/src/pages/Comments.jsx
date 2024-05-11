@@ -63,7 +63,7 @@ const Comments = ({ userEmail }) => {
   }
 
   if (!comments.length) {
-    return <h1>No comments found for this post.</h1>;
+    massege= <h1>No comments found for this post.</h1>;
   }
   if (comments.length === 0) {
     massege = <h1>No comments found.</h1>
