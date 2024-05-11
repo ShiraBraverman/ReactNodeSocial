@@ -32,8 +32,6 @@ router.post("/", async (req, res) => {
     }
 });
 
-
-
 router.put("/:id", async (req, res) => {
     const id = req.params.id;
     const response = await controller.update(id, req.body.userId, req.body.title, req.body.completed)

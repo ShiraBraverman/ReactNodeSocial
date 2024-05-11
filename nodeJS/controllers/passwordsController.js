@@ -26,9 +26,7 @@ async function deletePassword(id) {
 
 async function authenticate(username, password) {
     try {
-        // כאן נבצע בדיקה אם המשתמש והסיסמה תואמים לנתונים במסד הנתונים
-        // אם האימות הצליח, החזר true
-        // אם האימות נכשל, החזר false
+        console.log('Authenticating');
         const isAuthenticated = await model.authenticateUser(username, password);
 
         return isAuthenticated;

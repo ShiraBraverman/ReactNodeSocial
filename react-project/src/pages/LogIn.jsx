@@ -29,14 +29,18 @@ const logIn = () => {
             })
         };
         fetch(url, requestOptions)
-            .then(response => response.json())
-            .then(data => {
-                console.log(data);
-                foundUser = data;
-                if (!foundUser) {
-                    setLoginError("incorrect passwordor username");
+            .then(response => {
+                console.log(response.status)
+                console.log(response)
+                if (!response.ok) {
+                    setLoginError("incorrect password or username");
+                    return;
                 }
-                else {
+                return response.json();
+            })
+            .then(data => {
+                if (data) {
+                    foundUser = data;
                     localStorage.setItem("currentUser", JSON.stringify(foundUser));
                     setUser(foundUser);
                     setUserName("");
@@ -49,7 +53,7 @@ const logIn = () => {
                 setLoginError('Error', error);
             });
     };
-    
+
     return (
         <div className='form'>
             <h2 className="title">Log in</h2><br />
