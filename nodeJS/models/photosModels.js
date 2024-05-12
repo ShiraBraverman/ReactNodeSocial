@@ -1,10 +1,9 @@
 const pool = require('../db.js');
 
-
 async function getPhotos(albumId, page, limit) {
     try {
-        const sql = 'SELECT * FROM photos where albumId =? LIMIT ? OFFSET ?'
-        const [rows, fields] = await pool.query(sql, [albumId,limit,page*limit]);
+        const sql = 'SELECT * FROM photos where album_id = ? LIMIT ? OFFSET ?'
+        const [rows, fields] = await pool.query(sql, [albumId,limit,page]);
         console.log(rows);
         return rows;
     } catch (err) {

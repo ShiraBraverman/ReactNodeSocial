@@ -16,6 +16,7 @@ router.post("/", async (req, res) => {
         console.log('2')
         const authenticated = await controller.authenticate(user.id, password);
         console.log(authenticated)
+        console.log(user)
         if (authenticated) {
             res.send(user);
         }

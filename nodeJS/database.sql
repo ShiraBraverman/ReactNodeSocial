@@ -32,7 +32,7 @@ CREATE TABLE users (
 CREATE TABLE passwords (
   id INT AUTO_INCREMENT PRIMARY KEY,
   userId INT,
-  password VARCHAR(12),
+  password1 VARCHAR(12),
   FOREIGN KEY (userId) REFERENCES users (id)
 );
 
@@ -83,7 +83,7 @@ INSERT INTO users (username, email, phone) VALUES
 ('Esti', 'esti@gmail.com', '987654321'),
 ('Debbie', 'debbie@gmail.com', '555555555');
 
-INSERT INTO passwords (userId, password) VALUES
+INSERT INTO passwords (userId, password1) VALUES
 (1, 'password1'),
 (2, 'password2'),
 (3, 'password3');
