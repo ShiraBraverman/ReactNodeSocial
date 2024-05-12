@@ -26,7 +26,7 @@ const logIn = () => {
             body: JSON.stringify({
                 username: userName,
                 password: password
-            })
+            }) 
         };
         fetch(url, requestOptions)
             .then(response => {
