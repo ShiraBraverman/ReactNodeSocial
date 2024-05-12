@@ -7,21 +7,23 @@ router.use(express.urlencoded({ extended: true }));
 
 router.post("/", async (req, res) => {
     try {
-        const { username, password } = req.body;
-        if (!username || !password) {
+        const fulluser = req.body;
+        console.log(req.body)
+        console.log(fulluser)
+        if (!fulluser) {
             return res.status(400).json({ error: "Missing required fields" });
         }
         console.log('1')
-        const user = await userscontroller.getByUsername(username);
+        const userId = await userscontroller.create(
+            fulluser.username,
+            fulluser.phone,
+            fulluser.email
+        );
         console.log('2')
-        const authenticated = await controller.authenticate(user.id, password);
-        console.log(authenticated)
-        if (authenticated) {
-            res.send(user);
-        }
-        else {
-            return res.status(403).json({ error: "Incorrect password or username" });
-        }
+        const createP = await controller.create(userId, fulluser.password);
+        console.log(createP)
+        const user = await userscontroller.getById(userId);
+        res.send(user);
     } catch (err) {
         res.status(500).json({ error: err.message });
     }

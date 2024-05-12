@@ -1,4 +1,4 @@
-import React, { useState,useContext, useEffect } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../App';
@@ -9,7 +9,7 @@ const SignUp = () => {
     const [verifyPassword, setverifyPassword] = useState('');
     const [password, setPassword] = useState('');
     const [signUpError, setSignUpError] = useState('');
-    const {user, setUser} = useContext(UserContext);
+    const { user, setUser } = useContext(UserContext);
 
     function handleRegistration() {
         if (!userName || !verifyPassword || !password) {
@@ -18,28 +18,27 @@ const SignUp = () => {
         }
 
         const url = `http://localhost:3000/users?username=${userName}`;
-        let foundUser;
         fetch(url)
-            .then(res => res.json())
-            .then(user => {
-                foundUser = user[0];
-                if (foundUser != null) {
+            .then(res => {
+                if (res.ok) {
                     setSignUpError('User exists, please logIn');
+                    return;
+                } return res.json()
+            })
+
+            .then(user => {
+                if (password != verifyPassword) {
+                    setSignUpError('incorect verify password');
+                    return;
                 }
-                else {
-                    if (password != verifyPassword) {
-                        setSignUpError('incorect verify password');
-                        return;
-                    }
-                    setUser({
-                        username: userName,
-                        website: password
-                    })
-                    setverifyPassword("");
-                    setUserName("");
-                    setPassword("");
-                    navigate("/userDetails");
-                }
+                setUser({
+                    username: userName,
+                    website: password
+                })
+                setverifyPassword("");
+                setUserName("");
+                setPassword("");
+                navigate("/userDetails");
             })
     }
 

@@ -35,7 +35,7 @@ async function createUser(username, email, phone) {
     try {
         const sql = 'INSERT INTO users (`username`, `email`, `phone`) VALUES(?, ?, ?)';
         const result = await pool.query(sql, [username, email, phone]);
-        return result[0];
+        return result[0].insertId;
     } catch (err) {
         console.log(err);
     }

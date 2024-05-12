@@ -8,7 +8,8 @@ const UserDetails = () => {
     const [UseDetailsError, setUseDetailsError] = useState('');
     const [userDetails, setUserDetails] = useState(
         {
-            username: '',
+            username: user.username,
+            password: user.password,
             email: "",
             phone: "",
         });
@@ -22,14 +23,15 @@ const UserDetails = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (!userDetails.username   || !userDetails || !userDetails.phone) {
+        console.log(userDetails.username, userDetails.phone)
+        if (!userDetails.username || !userDetails.phone) {
             setUseDetailsError('Please fill in all fields.');
             return;
         }
-        if (!ValidateEmail(userDetails.email)) {
-            setUseDetailsError("You have entered an invalid email address!");
-            return;
-        }
+        // if (!ValidateEmail(userDetails.email)) {
+        //     setUseDetailsError("You have entered an invalid email address!");
+        //     return;
+        // }
 
         const url = 'http://localhost:3000/signup';
         const requestOptions = {
@@ -43,7 +45,7 @@ const UserDetails = () => {
                 // website: user.website
             })
         };
-        
+
         fetch(url, requestOptions)
             .then(response => response.json())
             .then(data => {
