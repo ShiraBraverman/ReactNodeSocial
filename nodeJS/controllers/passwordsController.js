@@ -2,15 +2,15 @@ const model = require('../models/passwordsModels');
 
 async function create(userId, password) {
     try {
-        return model.createPassword(userId,password);
+        return model.createPassword(userId, password);
     } catch (err) {
         throw err;
     }
 }
 
-async function update(id,userId,password) {
+async function update(id, userId, password) {
     try {
-        return model.updatePassword(id, userId,password);
+        return model.updatePassword(id, userId, password);
     } catch (err) {
         throw err;
     }
@@ -26,41 +26,15 @@ async function deletePassword(id) {
 
 async function authenticate(username, password) {
     try {
-        // מצא את המשתמש על פי שם המשתמש
-        const user = await User.findOne({ username: username });
+        // כאן נבצע בדיקה אם המשתמש והסיסמה תואמים לנתונים במסד הנתונים
+        // אם האימות הצליח, החזר true
+        // אם האימות נכשל, החזר false
+        const isAuthenticated = await model.authenticateUser(username, password);
 
-        // אם המשתמש לא נמצא או הסיסמה שגויה, החזר null
-        if (!user || user.password !== password) {
-            return null;
-        }
-
-        // אם הסיסמה נכונה, החזר את פרטי המשתמש
-        return {
-            id: user._id,
-            username: user.username,
-            email: user.email
-            // ניתן להוסיף כאן פרטים נוספים שתרצה להחזיר
-        };
+        return isAuthenticated;
     } catch (err) {
         throw err;
     }
 }
 
-// async function getAll() {
-//     try {
-//         return model.getPasswords();
-//     } catch (err) {
-//         throw err;
-//     }
-// }
-
-// async function getById(id) {
-//     try {
-//         return model.getPassword(id);
-//     } catch (err) {
-//         throw err;
-//     }
-// }
-
-module.exports = { create,  deletePassword, update }
-// module.exports = { create, getAll, getById, deletePassword, update }
+module.exports = { create, deletePassword, update, authenticate }
