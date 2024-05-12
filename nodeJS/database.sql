@@ -29,6 +29,14 @@ CREATE TABLE users (
   phone varchar(11)
 );
 
+CREATE TABLE addresses (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  user_id INT,
+  street VARCHAR(100),
+  city VARCHAR(50),
+  FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
 CREATE TABLE passwords (
   id INT AUTO_INCREMENT PRIMARY KEY,
   userId INT,

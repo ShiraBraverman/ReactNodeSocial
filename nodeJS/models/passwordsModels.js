@@ -16,7 +16,7 @@ async function authenticateUser(username, password) {
 
 async function createPassword(userId, password) {
     try {
-        const sql = 'INSERT INTO passwords (`userId`, `password1`) VALUES(?, ?, ?)';
+        const sql = 'INSERT INTO passwords (`userId`, `password1`) VALUES(?, ?)';
         const result = await pool.query(sql, [userId, password]);
         return result[0];
     } catch (err) {

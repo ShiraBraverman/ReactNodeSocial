@@ -19,27 +19,27 @@ const SignUp = () => {
 
         const url = `http://localhost:3000/users?username=${userName}`;
         fetch(url)
-            .then(res => {
-                if (res.ok) {
-                    setSignUpError('User exists, please logIn');
-                    return;
-                } return res.json()
+            .then(res => {                
+                return res.json();           
             })
-
             .then(user => {
+                setSignUpError('User exists, please logIn');
+                return;
+            })
+            .catch(error =>{
                 if (password != verifyPassword) {
                     setSignUpError('incorect verify password');
                     return;
                 }
                 setUser({
                     username: userName,
-                    website: password
+                    password: password
                 })
                 setverifyPassword("");
                 setUserName("");
                 setPassword("");
                 navigate("/userDetails");
-            })
+    })
     }
 
     return (

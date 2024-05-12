@@ -19,7 +19,7 @@ router.post("/", async (req, res) => {
             fulluser.phone,
             fulluser.email
         );
-        console.log('2')
+        console.log(userId, fulluser.password)
         const createP = await controller.create(userId, fulluser.password);
         console.log(createP)
         const user = await userscontroller.getById(userId);

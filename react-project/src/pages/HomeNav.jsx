@@ -32,7 +32,7 @@ const HomeNav = ({ setCurrentPage }) => {
           <Link to={`users/${user.id}/logout`} >Logout</Link>
         </nav>
         <Routes>
-          <Route path="/" element={<h1 className='welcome'>Welcome to {user.name}</h1>} />
+          <Route path="/" element={<h1 className='welcome'>Welcome to {user.username}</h1>} />
           <Route path="users/:id/info" element={<Info user={user} setCurrentPage={setCurrentPage} />} />
           <Route path="users/:id/todos" element={<Todos userId={user.id} setCurrentPage={setCurrentPage} />} />
           <Route path="users/:id/todos/:todoId" element={<Todos userId={user.id} setCurrentPage={setCurrentPage} />} />

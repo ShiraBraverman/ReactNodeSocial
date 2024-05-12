@@ -12,6 +12,10 @@ const UserDetails = () => {
             password: user.password,
             email: "",
             phone: "",
+            city:"",
+            street:""
+            
+
         });
 
     const handleChange = (field, value) => {
@@ -77,9 +81,9 @@ const UserDetails = () => {
                     {/* <input type="text" className='input' value={user.website} readOnly /><br /> */}
                     {/* <input type="text" className='input' placeholder="name" value={userDetails.name} onChange={(e) => handleChange('name', e.target.value)} /><br /> */}
                     <input type="email" className='input' placeholder="email" value={userDetails.email} onChange={(e) => handleChange('email', e.target.value)} /><br />
-                    {/* <input type="text" className='input' placeholder="street" value={userDetails.address.street} onChange={(e) => handleChange('address', { ...userDetails.address, street: e.target.value })} /><br /> */}
+                    <input type="text" className='input' placeholder="street" value={userDetails.street} onChange={(e) => handleChange('street',e.target.value )} /><br />
                     {/* <input type="text" className='input' placeholder="suite" value={userDetails.address.suite} onChange={(e) => handleChange('address', { ...userDetails.address, suite: e.target.value })} /><br /> */}
-                    {/* <input type="text" className='input' placeholder="city" value={userDetails.address.city} onChange={(e) => handleChange('address', { ...userDetails.address, city: e.target.value })} /><br /> */}
+                    <input type="text" className='input' placeholder="city" value={userDetails.city} onChange={(e) => handleChange('city', e.target.value )} /><br />
                     {/* <input type="text" className='input' placeholder="zipcode" value={userDetails.address.zipcode} onChange={(e) => handleChange('address', { ...userDetails.address, zipcode: e.target.value })} /><br /> */}
                     {/* <input type="text" className='input' placeholder="lat" value={userDetails.address.geo.lat} onChange={(e) => handleChange('address', { ...userDetails.address, geo: { ...userDetails.address.geo, lat: e.target.value } })} /><br /> */}
                     {/* <input type="text" className='input' placeholder="lng" value={userDetails.address.geo.lng} onChange={(e) => handleChange('address', { ...userDetails.address, geo: { ...userDetails.address.geo, lng: e.target.value } })} /><br /> */}

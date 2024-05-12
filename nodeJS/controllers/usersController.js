@@ -1,16 +1,16 @@
 const model = require('../models/usersModels');
 
-async function create(username, email, phone) {
+async function create(username, email, phone,street,city) {
     try {
-        return model.createUser(username, email, phone);
+        return model.createUser(username, email, phone,street,city);
     } catch (err) {
         throw err;
     }
 }
 
-async function update(id, username, email, phone) {
+async function update(id, username, email, phone,street,city) {
     try {
-        return model.updateUser(id, username, email, phone);
+        return model.updateUser(id,username, email, phone,street,city);
     } catch (err) {
         throw err;
     }
