@@ -33,10 +33,14 @@ async function getByUsername(username) {
 
 async function createUser(username, email, phone, street, city) {
     try {
+        console.log(4)
         const userSql = 'INSERT INTO users (`username`, `email`, `phone`) VALUES (?, ?, ?)';
         const userResult = await pool.query(userSql, [username, email, phone]);
+        console.log(5)
 
-        const userId = userResult.insertId;
+        const userId = userResult[0].insertId;
+        
+        console.log(userId)
 
         const addressSql = 'INSERT INTO addresses (`user_id`, `street`, `city`) VALUES (?, ?, ?)';
         await pool.query(addressSql, [userId, street, city]);

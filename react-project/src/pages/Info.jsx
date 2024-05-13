@@ -14,6 +14,8 @@ const Info = ({ user, setCurrentPage }) => {
         <li><strong>Username:</strong> {user.username}</li>
         <li><strong>Email:</strong> {user.email}</li>
         <li><strong>Phone:</strong> {user.phone}</li>
+        <li><strong>city:</strong> {user.city}</li>
+        <li><strong>street:</strong> {user.street}</li>
       </ul>
     </div>
   )

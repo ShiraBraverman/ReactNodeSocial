@@ -13,7 +13,7 @@ router.post("/", async (req, res) => {
         }
         console.log('1')
         const user = await userscontroller.getByUsername(username);
-        console.log('2')
+        console.log(user)
         const authenticated = await controller.authenticate(user.id, password);
         console.log(authenticated)
         console.log(user)

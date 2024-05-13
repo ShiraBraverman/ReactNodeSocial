@@ -25,6 +25,7 @@ async function deletePassword(id) {
 }
 
 async function authenticate(username, password) {
+    console.log('Authenticating');
     try {
         console.log('Authenticating');
         const isAuthenticated = await model.authenticateUser(username, password);

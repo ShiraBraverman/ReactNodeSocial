@@ -46,7 +46,6 @@ const UserDetails = () => {
             body: JSON.stringify({
                 ...userDetails,
                 username: user.username,
-                // website: user.website
             })
         };
 

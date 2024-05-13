@@ -96,6 +96,12 @@ INSERT INTO passwords (userId, password1) VALUES
 (2, 'password2'),
 (3, 'password3');
 
+INSERT INTO addresses (user_id, street, city) VALUES 
+(1, 'רחוב הרצל', 'תל אביב'),
+(2, 'רחוב הציונות', 'ירושלים'),
+(3, 'רחוב המשה', 'חיפה');
+
+
 INSERT INTO posts (userId, title, body) VALUES
 (1, 'Post Title 1', 'This is the body of post 1.'),
 (1, 'Post Title 2', 'This is the body of post 2.'),
