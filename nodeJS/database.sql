@@ -40,7 +40,7 @@ CREATE TABLE addresses (
 CREATE TABLE passwords (
   id INT AUTO_INCREMENT PRIMARY KEY,
   userId INT,
-  password1 VARCHAR(12),
+  password1 VARCHAR(255),
   FOREIGN KEY (userId) REFERENCES users (id)
 );
 

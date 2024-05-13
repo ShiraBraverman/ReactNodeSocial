@@ -1,23 +1,29 @@
 const pool = require('../db.js');
+const bcrypt = require('bcryptjs');
 
 async function authenticateUser(username, password) {
     try {
         // בצע שאילתת SQL לבדיקת אימות המשתמש
-        const sql = 'SELECT * FROM passwords WHERE userId = ? AND password1 = ?';
-        const result = await pool.query(sql, [username, password]);
-        // אם נמצא משתמש עם שם משתמש וסיסמה תואמים
-        // החזר true
-        // אחרת, החזר false
-        return result[0].length > 0;
+        const sql = 'SELECT * FROM passwords WHERE userId = ?';
+        const result = await pool.query(sql, [username]);
+
+        // אם נמצא משתמש עם המזהה המשתמש נסה להשוות את הסיסמה
+        if (result[0].length > 0) {
+            const hashedPassword = result[0][0].password1;
+            const match = await bcrypt.compare(password, hashedPassword);
+            return match;
+        } else {
+            return false; // משתמש לא נמצא
+        }
     } catch (err) {
         throw err;
     }
 }
-
 async function createPassword(userId, password) {
     try {
         const sql = 'INSERT INTO passwords (`userId`, `password1`) VALUES(?, ?)';
         const result = await pool.query(sql, [userId, password]);
+        console.log(result)
         return result[0];
     } catch (err) {
         console.log(err);
