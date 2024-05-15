@@ -3,18 +3,9 @@ const bcrypt = require('bcryptjs');
 
 async function authenticateUser(username, password) {
     try {
-        // בצע שאילתת SQL לבדיקת אימות המשתמש
         const sql = 'SELECT * FROM passwords WHERE userId = ?';
         const result = await pool.query(sql, [username]);
-
-        // אם נמצא משתמש עם המזהה המשתמש נסה להשוות את הסיסמה
-        if (result[0].length > 0) {
-            const hashedPassword = result[0][0].password1;
-            const match = await bcrypt.compare(password, hashedPassword);
-            return match;
-        } else {
-            return false; // משתמש לא נמצא
-        }
+        return result;
     } catch (err) {
         throw err;
     }

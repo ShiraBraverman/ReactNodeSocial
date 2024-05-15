@@ -1,5 +1,6 @@
+DROP DATABASE X;
 /* Create the database */
-CREATE DATABASE  IF NOT EXISTS X;
+CREATE DATABASE X;
 
 /* Switch to the classicmodels database */
 USE X;

@@ -3,7 +3,6 @@ const model = require('../models/passwordsModels');
 
 async function create(userId, password) {
     try {
-        // הצפנת הסיסמה
         const encryptedPassword = await bcrypt.hash(password, 10);
         console.log('encryptedPassword')
         console.log(encryptedPassword)
@@ -15,7 +14,6 @@ async function create(userId, password) {
 
 async function update(id, userId, password) {
     try {
-        // הצפנת הסיסמה
         const encryptedPassword = await bcrypt.hash(password, 10);
         return model.updatePassword(id, userId, encryptedPassword);
     } catch (err) {
@@ -34,9 +32,14 @@ async function deletePassword(id) {
 async function authenticate(username, password) {
     try {
         console.log('Authenticating');
-        const isAuthenticated = await model.authenticateUser(username, password);
-
-        return isAuthenticated;
+        const result = await model.authenticateUser(username, password);
+        if (result[0].length > 0) {
+            const hashedPassword = result[0][0].password1;
+            const match = await bcrypt.compare(password, hashedPassword);
+            return match;
+        } else {
+            return false; // משתמש לא נמצא
+        }
     } catch (err) {
         throw err;
     }

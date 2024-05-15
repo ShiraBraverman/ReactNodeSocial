@@ -8,7 +8,6 @@ router.use(express.urlencoded({ extended: true }));
 router.post("/", async (req, res) => {
     try {
         const fulluser = req.body;
-        console.log(123)
         console.log(req.body)
         if (!fulluser) {
             return res.status(400).json({ error: "Missing required fields" });
@@ -21,6 +20,7 @@ router.post("/", async (req, res) => {
             fulluser.street,
             fulluser.city
         );
+        console.log('2')
         console.log(userId, fulluser.password)
         const createP = await controller.create(userId.insertId, fulluser.password);
         console.log(createP)
