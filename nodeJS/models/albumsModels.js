@@ -23,7 +23,7 @@ async function getAlbum(id) {
 
 async function createAlbum(userId, title) {
     try {
-        const sql = "INSERT INTO albums (`userId`, `title`) VALUES(?, ?, ?)";
+        const sql = "INSERT INTO albums (`userId`, `title`) VALUES(?, ?)";
         const result = await pool.query(sql, [userId, title]);
         return result[0];
     } catch (err) {

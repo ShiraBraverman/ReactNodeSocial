@@ -9,7 +9,8 @@ router.get("/", async (req, res) => {
     const albumId = req.query.albumId;
     const page = req.query._page;
     const limit = req.query._limit;
-    res.send(await controller.getAll(albumId, page, limit));
+    console.log(page,limit)
+    res.send(await controller.getAll(albumId, parseInt(page) , parseInt(limit)));
 })
 
 router.get("/:id", async (req, res) => {
@@ -21,11 +22,12 @@ router.get("/:id", async (req, res) => {
 router.post("/", async (req, res) => {
     try {
         const { albumId, title, url, thumbnailUrl } = req.body;
-        if (!albumId || !title || !url || !thumbnailUrl) {
-            return res.status(400).json({ error: "Missing required fields" });
-        }
+        // if (!albumId || !title || !url || !thumbnailUrl) {
+        //     return res.status(400).json({ error: "Missing required fields" });
+        // }
         const response = await controller.create(albumId, title, url, thumbnailUrl);
-        res.status(201).json(response);
+        const data = await controller.getById(response.insertId);
+        res.status(201).json(data);
     } catch (err) {
         res.status(500).json({ error: err.message });
     }

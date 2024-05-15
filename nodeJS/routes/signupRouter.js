@@ -16,8 +16,8 @@ router.post("/", async (req, res) => {
         console.log('1')
         const userId = await userscontroller.create(
             fulluser.username,
+            fulluser.email,        
             fulluser.phone,
-            fulluser.email,
             fulluser.street,
             fulluser.city
         );

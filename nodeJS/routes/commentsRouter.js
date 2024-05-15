@@ -23,7 +23,8 @@ router.post("/", async (req, res) => {
             return res.status(400).json({ error: "Missing required fields" });
         }
         const response = await controller.create(postId, name, email, body);
-        res.status(201).json(response);
+        const data = await controller.getById(response.insertId);
+        res.status(201).json(data);
     } catch (err) {
         res.status(500).json({ error: err.message });
     }

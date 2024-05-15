@@ -4,23 +4,6 @@ CREATE DATABASE  IF NOT EXISTS X;
 /* Switch to the classicmodels database */
 USE X;
 
-/* Drop the foreign key constraints */
-ALTER TABLE comments DROP FOREIGN KEY comments_ibfk_1;
-ALTER TABLE passwords DROP FOREIGN KEY passwords_ibfk_1;
-ALTER TABLE posts DROP FOREIGN KEY posts_ibfk_1;
-ALTER TABLE photos DROP FOREIGN KEY photos_ibfk_1;
-ALTER TABLE albums DROP FOREIGN KEY albums_ibfk_1;
-ALTER TABLE todos DROP FOREIGN KEY todos_ibfk_1;
-
-/* Drop existing tables  */
-DROP TABLE IF EXISTS users;
-DROP TABLE IF EXISTS passwords;
-DROP TABLE IF EXISTS comments;
-DROP TABLE IF EXISTS posts;
-DROP TABLE IF EXISTS albums;
-DROP TABLE IF EXISTS photos;
-DROP TABLE IF EXISTS todos;
-
 /* Create the tables */
 CREATE TABLE users (
   id INT AUTO_INCREMENT PRIMARY KEY,
@@ -92,9 +75,9 @@ INSERT INTO users (username, email, phone) VALUES
 ('Debbie', 'debbie@gmail.com', '555555555');
 
 INSERT INTO passwords (userId, password1) VALUES
-(1, 'password1'),
-(2, 'password2'),
-(3, 'password3');
+(1, '$2a$10$iQAgClvATWGirdX.l64ufOVhyDGkN2LX0cBOZ/DzCm6FoiWsyd.q2'),
+(2, '$2a$10$N4v5.qSkDw.GoNmLPFVVde7h48LOg75zXSFeL3NN4tuitGooZATDa'),
+(3, '$2a$10$2xMf5ssvURXXsOYfaIRY2OAFEosJw3EsVspHtDz1GpmcEf.II2F4y');
 
 INSERT INTO addresses (user_id, street, city) VALUES 
 (1, 'רחוב הרצל', 'תל אביב'),

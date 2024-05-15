@@ -5,7 +5,8 @@ import Photo from '../components/Photo';
 const Photos = () => {
   const navigate = useNavigate();
   const { state } = useLocation();
-  const { title, id } = state || {};  const [photos, setPhotos] = useState([]);
+  const { title, id } = state || {};  
+  const [photos, setPhotos] = useState([]);
   const [page, setPage] = useState(0);
   const [hasMorePhotos, setHasMorePhotos] = useState(true);
   const [loading, setLoading] = useState(false);
@@ -19,6 +20,7 @@ const Photos = () => {
 
   const loadMorePhotos = () => {
     setLoading(true);
+    console.log(id)
     const url = `http://localhost:3000/photos?albumId=${id}&_page=${page}&_limit=10`;
     fetch(url)
       .then(response => response.json())
@@ -41,7 +43,7 @@ const Photos = () => {
       return;
     }
     const newPhotoObject = {
-      albumId: albumId,
+      albumId: id,
       title: newPhoto.title,
       url: newPhoto.url,
       thumbnailUrl: newPhoto.url
@@ -62,7 +64,7 @@ const Photos = () => {
           title: '',
           url: ''
         });
-        setPage(1)
+        setPage(0)
         setPhotos([])
         loadMorePhotos()
       })

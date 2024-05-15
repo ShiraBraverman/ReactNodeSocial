@@ -28,14 +28,14 @@ const UserDetails = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(userDetails.username, userDetails.phone)
-        if (!userDetails.username || !userDetails.phone) {
+        if (!userDetails.username || !userDetails.phone|| !userDetails.city|| !userDetails.street) {
             setUseDetailsError('Please fill in all fields.');
             return;
         }
-        // if (!ValidateEmail(userDetails.email)) {
-        //     setUseDetailsError("You have entered an invalid email address!");
-        //     return;
-        // }
+        if (!ValidateEmail(userDetails.email)) {
+            setUseDetailsError("You have entered an invalid email address!");
+            return;
+        }
 
         const url = 'http://localhost:3000/signup';
         const requestOptions = {

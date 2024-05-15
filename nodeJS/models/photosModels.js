@@ -2,8 +2,8 @@ const pool = require('../db.js');
 
 async function getPhotos(albumId, page, limit) {
     try {
-        const sql = 'SELECT * FROM photos where album_id = ? LIMIT ? OFFSET ?'
-        const [rows, fields] = await pool.query(sql, [albumId,limit,page]);
+        const sql = 'SELECT * FROM photos where albumId = ? LIMIT ? OFFSET ?'
+        const [rows, fields] = await pool.query(sql, [albumId,limit,page*limit]);
         console.log(rows);
         return rows;
     } catch (err) {
@@ -23,7 +23,7 @@ async function getPhoto(id) {
 
 async function createPhoto(albumId, title, url, thumbnailUrl) {
     try {
-        const sql = "INSERT INTO photos (`albumId`,`title`,`url`, `thumbnailUrl`) VALUES(?, ?, ?)";
+        const sql = "INSERT INTO photos (`albumId`,`title`,`url`, `thumbnailUrl`) VALUES(?, ?, ?, ?)";
         const result = await pool.query(sql, [albumId, title, url, thumbnailUrl]);
         return result[0];
     } catch (err) {

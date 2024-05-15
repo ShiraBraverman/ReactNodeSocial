@@ -23,7 +23,7 @@ async function getComment(id) {
 
 async function createComment(postId, name, email, body) {
     try {
-        const sql = 'INSERT INTO comments (`postId`, `name`,`email`, `body`) VALUES(?, ?, ?)';
+        const sql = 'INSERT INTO comments (`postId`, `name`,`email`, `body`) VALUES(?, ?, ?, ?)';
         const result = await pool.query(sql, [postId, name, email, body]);
         return result[0];
     } catch (err) {
