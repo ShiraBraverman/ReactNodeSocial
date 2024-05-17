@@ -12,7 +12,7 @@ async function create(userId, password) {
     }
 }
 
-async function update(id, userId, password) {
+async function update(id, password) {
     try {
         const encryptedPassword = await bcrypt.hash(password, 10);
         return model.updatePassword(id, userId, encryptedPassword);
@@ -33,13 +33,12 @@ async function authenticate(username, password) {
     try {
         console.log('Authenticating');
         const result = await model.authenticateUser(username, password);
-        if (result[0].length > 0) {
-            const hashedPassword = result[0][0].password1;
-            const match = await bcrypt.compare(password, hashedPassword);
-            return match;
-        } else {
-            return false; // משתמש לא נמצא
-        }
+        console.log('result ', result[0]);
+        const hashedPassword = result[0].password1;
+        console.log('hashedPassword ', hashedPassword);
+        console.log('Password ', password)
+        const match = await bcrypt.compare(password, hashedPassword);
+        return match;
     } catch (err) {
         throw err;
     }

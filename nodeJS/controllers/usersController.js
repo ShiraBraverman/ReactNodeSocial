@@ -1,16 +1,16 @@
 const model = require('../models/usersModels');
 
-async function create(username, email, phone,street,city) {
+async function create(username, email, phone, street, city, password) {
     try {
-        return model.createUser(username, email, phone,street,city);
+        return model.createUser(username, email, phone, street, city, password);
     } catch (err) {
         throw err;
     }
 }
 
-async function update(id, username, email, phone,street,city) {
+async function update(id, username, email, phone, street, city) {
     try {
-        return model.updateUser(id,username, email, phone,street,city);
+        return model.updateUser(id, username, email, phone, street, city);
     } catch (err) {
         throw err;
     }
@@ -48,5 +48,5 @@ async function getByUsername(username) {
     }
 }
 
-module.exports = { create, getAll, getById, deleteUser, update ,getByUsername}
+module.exports = { create, getAll, getById, deleteUser, update, getByUsername }
 

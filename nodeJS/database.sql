@@ -6,86 +6,88 @@ CREATE DATABASE X;
 USE X;
 
 /* Create the tables */
-CREATE TABLE users (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  username varchar(50),
-  email varchar(50),
-  phone varchar(11)
-);
 
 CREATE TABLE addresses (
   id INT AUTO_INCREMENT PRIMARY KEY,
-  user_id INT,
   street VARCHAR(100),
-  city VARCHAR(50),
-  FOREIGN KEY (user_id) REFERENCES users(id)
+  city VARCHAR(50)
 );
 
 CREATE TABLE passwords (
   id INT AUTO_INCREMENT PRIMARY KEY,
-  userId INT,
-  password1 VARCHAR(255),
-  FOREIGN KEY (userId) REFERENCES users (id)
+  password1 VARCHAR(255)
+);
+
+CREATE TABLE users (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  username VARCHAR(50),
+  email VARCHAR(50),
+  phone VARCHAR(11),
+  address_id INT,
+  password_id INT,
+  FOREIGN KEY (address_id) REFERENCES addresses(id),
+  FOREIGN KEY (password_id) REFERENCES passwords(id)
 );
 
 CREATE TABLE posts (
-	id INT AUTO_INCREMENT PRIMARY KEY,
-	userId INT,
-    title VARCHAR(255),
-    body TEXT,
-    FOREIGN KEY (userId) REFERENCES users (id)
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  userId INT,
+  title VARCHAR(255),
+  body TEXT,
+  FOREIGN KEY (userId) REFERENCES users(id)
 );
 
 CREATE TABLE comments (
-	id INT AUTO_INCREMENT PRIMARY KEY,
-	postId INT,
-    name VARCHAR(255),
-    email VARCHAR(255),
-    body TEXT,
-	FOREIGN KEY (postId) REFERENCES posts (id)
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  postId INT,
+  name VARCHAR(255),
+  email VARCHAR(255),
+  body TEXT,
+  FOREIGN KEY (postId) REFERENCES posts(id)
 );
 
 CREATE TABLE albums (
-	id INT AUTO_INCREMENT PRIMARY KEY,
-	userId INT,
-    title VARCHAR(255),
-	FOREIGN KEY (userId) REFERENCES users (id)
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  userId INT,
+  title VARCHAR(255),
+  FOREIGN KEY (userId) REFERENCES users(id)
 );
 
 CREATE TABLE photos (
-	id INT AUTO_INCREMENT PRIMARY KEY,
-	albumId INT,
-    title VARCHAR(255),
-    url VARCHAR(255),
-    thumbnailUrl VARCHAR(255),
-	FOREIGN KEY (albumId) REFERENCES albums (id)
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  albumId INT,
+  title VARCHAR(255),
+  url VARCHAR(255),
+  thumbnailUrl VARCHAR(255),
+  FOREIGN KEY (albumId) REFERENCES albums(id)
 );
 
 CREATE TABLE todos (
-	id INT AUTO_INCREMENT PRIMARY KEY,
-	userId INT,
-    title VARCHAR(255),
-    completed BOOLEAN,
-	FOREIGN KEY (userId) REFERENCES users (id)
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  userId INT,
+  title VARCHAR(255),
+  completed BOOLEAN,
+  FOREIGN KEY (userId) REFERENCES users(id)
 );
 
-/* Inserting data */
-INSERT INTO users (username, email, phone) VALUES
-('Shira', 'shira@gmail.com', '123456789'),
-('Esti', 'esti@gmail.com', '987654321'),
-('Debbie', 'debbie@gmail.com', '555555555');
+/* Inserting data into addresses and passwords first */
+INSERT INTO addresses (street, city) VALUES
+('רחוב הרצל', 'תל אביב'),
+('רחוב הציונות', 'ירושלים'),
+('רחוב המשה', 'חיפה');
 
-INSERT INTO passwords (userId, password1) VALUES
-(1, '$2a$10$iQAgClvATWGirdX.l64ufOVhyDGkN2LX0cBOZ/DzCm6FoiWsyd.q2'),
-(2, '$2a$10$N4v5.qSkDw.GoNmLPFVVde7h48LOg75zXSFeL3NN4tuitGooZATDa'),
-(3, '$2a$10$2xMf5ssvURXXsOYfaIRY2OAFEosJw3EsVspHtDz1GpmcEf.II2F4y');
+INSERT INTO passwords (password1) VALUES
+('$2a$10$iQAgClvATWGirdX.l64ufOVhyDGkN2LX0cBOZ/DzCm6FoiWsyd.q2'),
+('$2a$10$N4v5.qSkDw.GoNmLPFVVde7h48LOg75zXSFeL3NN4tuitGooZATDa'),
+('$2a$10$2xMf5ssvURXXsOYfaIRY2OAFEosJw3EsVspHtDz1GpmcEf.II2F4y');
 
-INSERT INTO addresses (user_id, street, city) VALUES 
-(1, 'רחוב הרצל', 'תל אביב'),
-(2, 'רחוב הציונות', 'ירושלים'),
-(3, 'רחוב המשה', 'חיפה');
+/* Now inserting data into users table with foreign keys */
+INSERT INTO users (username, email, phone, address_id, password_id) VALUES
+('Shira', 'shira@gmail.com', '123456789', 1, 1),
+('Esti', 'esti@gmail.com', '987654321', 2, 2),
+('Debbie', 'debbie@gmail.com', '555555555', 3, 3);
 
-
+/* Inserting data into other tables */
 INSERT INTO posts (userId, title, body) VALUES
 (1, 'Post Title 1', 'This is the body of post 1.'),
 (1, 'Post Title 2', 'This is the body of post 2.'),

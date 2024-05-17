@@ -12,12 +12,10 @@ router.post("/", async (req, res) => {
             return res.status(400).json({ error: "Missing required fields" });
         }
         console.log('1')
-        const user = await userscontroller.getByUsername(username);
-        console.log(user)
-        const authenticated = await controller.authenticate(user.id, password);
+        const authenticated = await controller.authenticate(username, password);
         console.log(authenticated)
-        console.log(user)
         if (authenticated) {
+            const user = await userscontroller.getByUsername(username);
             res.send(user);
         }
         else {
