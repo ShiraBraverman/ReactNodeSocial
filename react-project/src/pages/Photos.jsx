@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Photo from '../components/Photo';
 
 const Photos = () => {
@@ -13,23 +13,25 @@ const Photos = () => {
   const [isAddingPhoto, setIsAddingPhoto] = useState(false);
   const [newPhoto, setNewPhoto] = useState({ title: '', url: '' });
 
-  let massege;
+  let message;
+  
   useEffect(() => {
-    loadMorePhotos();
+    loadMorePhotos(0, true);
   }, []);
 
-  const loadMorePhotos = () => {
+  const loadMorePhotos = (pageToLoad, reset = false) => {
     setLoading(true);
-    console.log(id)
-    const url = `http://localhost:3000/photos?albumId=${id}&_page=${page}&_limit=10`;
+    const url = `http://localhost:3000/photos?albumId=${id}&_page=${pageToLoad}&_limit=10`;
     fetch(url)
       .then(response => response.json())
       .then(data => {
         if (data.length < 10) {
           setHasMorePhotos(false);
+        } else {
+          setHasMorePhotos(true);
         }
-        setPhotos([...photos, ...data]);
-        setPage(page + 1);
+        setPhotos(prevPhotos => reset ? data : [...prevPhotos, ...data]);
+        setPage(pageToLoad + 1);
         setLoading(false);
       })
       .catch(error => {
@@ -39,7 +41,7 @@ const Photos = () => {
   };
 
   const addPhoto = () => {
-    if (newPhoto.url == '' || newPhoto.title == '') {
+    if (newPhoto.url === '' || newPhoto.title === '') {
       return;
     }
     const newPhotoObject = {
@@ -58,16 +60,15 @@ const Photos = () => {
     fetch(`http://localhost:3000/photos`, requestOptions)
       .then(res => res.json())
       .then(data => {
-        setPhotos([...photos, data])
         setIsAddingPhoto(false);
-        setNewPhoto({
-          title: '',
-          url: ''
-        });
-        setPage(0)
-        setPhotos([])
-        loadMorePhotos()
+        setNewPhoto({ title: '', url: '' });
+        setPage(0);
+        setPhotos([]);
+        loadMorePhotos(0, true);
       })
+      .catch(error => {
+        console.error('Error adding photo:', error);
+      });
   };
 
   const backToAlbums = () => {
@@ -75,7 +76,7 @@ const Photos = () => {
   };
 
   if (photos.length === 0) {
-    massege = <h1>No photos found.</h1>
+    message = <h1>No photos found.</h1>;
   }
 
   const handleChange = (field, value) => {
@@ -88,7 +89,7 @@ const Photos = () => {
 
   return (
     <div className="photos-container">
-      {massege}
+      {message}
       <button onClick={backToAlbums}>Back to All Albums</button>
       <button className='add-photo-button' onClick={() => { setIsAddingPhoto(!isAddingPhoto); setNewPhoto({ url: '', title: '' }); }}>➕ Add Photo</button>
       {isAddingPhoto && (
@@ -105,11 +106,10 @@ const Photos = () => {
       </div>
       {loading && <p>Loading...</p>}
       {hasMorePhotos && !loading ? (
-        <button onClick={loadMorePhotos}>View more</button>
-      ) : <div>No more photos</div>}
+        <button onClick={() => loadMorePhotos(page)}>View more</button>
+      ) : !loading && <div>No more photos</div>}
     </div>
   );
-  
 };
 
 export default Photos;

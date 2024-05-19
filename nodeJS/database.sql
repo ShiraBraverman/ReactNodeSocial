@@ -122,21 +122,22 @@ INSERT INTO albums (userId, title) VALUES
 (3, 'Album Title 9');
 
 INSERT INTO photos (albumId, title, url, thumbnailUrl) VALUES
-(1, 'Photo Title 1', 'http://example.com/photo1.jpg', 'http://example.com/thumb1.jpg'),
-(1, 'Photo Title 2', 'http://example.com/photo2.jpg', 'http://example.com/thumb2.jpg'),
-(1, 'Photo Title 3', 'http://example.com/photo3.jpg', 'http://example.com/thumb3.jpg'),
-(1, 'Photo Title 4', 'http://example.com/photo4.jpg', 'http://example.com/thumb4.jpg'),
-(1, 'Photo Title 5', 'http://example.com/photo5.jpg', 'http://example.com/thumb5.jpg'),
-(2, 'Photo Title 6', 'http://example.com/photo6.jpg', 'http://example.com/thumb6.jpg'),
-(2, 'Photo Title 7', 'http://example.com/photo7.jpg', 'http://example.com/thumb7.jpg'),
-(2, 'Photo Title 8', 'http://example.com/photo8.jpg', 'http://example.com/thumb8.jpg'),
-(2, 'Photo Title 9', 'http://example.com/photo9.jpg', 'http://example.com/thumb9.jpg'),
-(2, 'Photo Title 10', 'http://example.com/photo10.jpg', 'http://example.com/thumb10.jpg'),
-(3, 'Photo Title 11', 'http://example.com/photo11.jpg', 'http://example.com/thumb11.jpg'),
-(3, 'Photo Title 12', 'http://example.com/photo12.jpg', 'http://example.com/thumb12.jpg'),
-(3, 'Photo Title 13', 'http://example.com/photo13.jpg', 'http://example.com/thumb13.jpg'),
-(3, 'Photo Title 14', 'http://example.com/photo14.jpg', 'http://example.com/thumb14.jpg'),
-(3, 'Photo Title 15', 'http://example.com/photo15.jpg', 'http://example.com/thumb15.jpg');
+(1, 'Mountain View', 'https://images.unsplash.com/photo-1593642634367-d91a135587b5', 'https://images.unsplash.com/photo-1593642634367-d91a135587b5?w=150&h=150&fit=crop'),
+(1, 'Forest Path', 'https://images.unsplash.com/photo-1472214103451-9374bd1c798e', 'https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=150&h=150&fit=crop'),
+(1, 'Sunset Beach', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfYjytwITwY7DVgpwCBBdigVgegbdppsIcxXCGz23dvg&s', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfYjytwITwY7DVgpwCBBdigVgegbdppsIcxXCGz23dvg&s'),
+(1, 'Lake Reflection', 'https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0', 'https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?w=150&h=150&fit=crop'),
+(1, 'Desert Dunes', 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee', 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=150&h=150&fit=crop'),
+(2, 'Snowy Mountains', 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee', 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=150&h=150&fit=crop'),
+(2, 'Autumn Forest', 'https://images.unsplash.com/photo-1472214103451-9374bd1c798e', 'https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=150&h=150&fit=crop'),
+(2, 'Rural Field', 'https://cdn.stips.co.il/photos/w400/7340654132.jpg', 'https://cdn.stips.co.il/photos/w400/7340654132.jpg'),
+(2, 'Tropical Beach', 'https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0', 'https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?w=150&h=150&fit=crop'),
+(2, 'City Park', 'https://img.lovepik.com/png/20231029/Smiling-blushing-cute-star-emoji-expression-cute-smile-Lovely-smiling_403775_wh860.png', 'https://img.lovepik.com/png/20231029/Smiling-blushing-cute-star-emoji-expression-cute-smile-Lovely-smiling_403775_wh860.png'),
+(3, 'Lush Meadow', 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee', 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=150&h=150&fit=crop'),
+(3, 'Mountain Lake', 'https://images.unsplash.com/photo-1472214103451-9374bd1c798e', 'https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=150&h=150&fit=crop'),
+(3, 'Rocky Coast', 'https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0', 'https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?w=150&h=150&fit=crop'),
+(3, 'River Valley', 'https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0', 'https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?w=150&h=150&fit=crop'),
+(3, 'Seaside Cliffs', 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee', 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=150&h=150&fit=crop');
+
 
 INSERT INTO todos (userId, title, completed) VALUES
 (1, 'Task 1', false),
